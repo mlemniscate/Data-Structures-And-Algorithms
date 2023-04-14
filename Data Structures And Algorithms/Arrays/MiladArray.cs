@@ -10,6 +10,8 @@ public class MiladArray
     // 10 - 20 - 30 - 40 - 50
     // Lookup O(1)
 
+    // Search for value O(n)
+
     // Add O(n)
 
     // Delete O(1) -> Best
