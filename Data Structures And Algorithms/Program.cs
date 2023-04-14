@@ -42,7 +42,19 @@
 /// Arrays
 //////////////////////////////////////////////////////
 
-using Data_Structures_And_Algorithms.Arrays;
+// using Data_Structures_And_Algorithms.Arrays;
+//
+// var miladArray = new MyArray(3);
+// miladArray.ArrayMain();
 
-var miladArray = new MyArray(3);
-miladArray.ArrayMain();
+//////////////////////////////////////////////////////
+/// Linked Lists
+/////////////////////////////////////////////////////
+
+using Data_Structures_And_Algorithms.Linked_Lists;
+
+var myLinkedList = new MyLinkedList();
+myLinkedList.Main();
+
+
+
