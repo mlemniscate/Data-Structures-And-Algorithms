@@ -17,37 +17,43 @@ public class MiladArray
 
     private int[] array;
     private int arrayLenght;
-    private int arrayCapacity;
-    private int lastInsertIndex = 0;
+    private int insertIndex = 0;
 
     public MiladArray(int arrayLength)
     {
         array = new int[arrayLength];
         this.arrayLenght = arrayLength;
-        arrayCapacity = arrayLength;
+    }
+
+    public void Print()
+    {
+        for (var index = 0; index < insertIndex; index++)
+        {
+            Console.WriteLine(array[index]);
+        }
     }
 
     public void Add(int value)
     {
-        if (lastInsertIndex >= arrayLenght)
+        if (insertIndex >= arrayLenght)
             DoubleArrayLength();
         
-        array[lastInsertIndex] = value;
-        lastInsertIndex++;
+        array[insertIndex] = value;
+        insertIndex++;
     }
 
     public void RemoveAt(int index)
     {
         var counter = index;
-        if (lastInsertIndex >= arrayLenght)
+        if (insertIndex >= arrayLenght)
             DoubleArrayLength();
-        while (counter <= lastInsertIndex)
+        while (counter < insertIndex)
         {
             array[counter] = array[counter + 1];
             counter++;
         }
 
-        lastInsertIndex--;
+        insertIndex--;
     }
 
     public int IndexOf(int value)
@@ -99,8 +105,13 @@ public class MiladArray
         numbers.Add(20);
         numbers.Add(30);
         numbers.Add(40);
+        numbers.Add(50);
+
+        numbers.Print();
         
         numbers.RemoveAt(2);
-        Console.Write(numbers.IndexOf(40));
+
+        numbers.Print();
+        Console.Write(numbers.IndexOf(50));
     }
 }
