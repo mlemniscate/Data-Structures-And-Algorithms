@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Arrays\" />
+    <Folder Include="Linked Lists\" />
   </ItemGroup>
 
 </Project>

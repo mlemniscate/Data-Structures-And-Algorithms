@@ -44,5 +44,5 @@
 
 using Data_Structures_And_Algorithms.Arrays;
 
-var miladArray = new MiladArray(3);
+var miladArray = new MyArray(3);
 miladArray.ArrayMain();

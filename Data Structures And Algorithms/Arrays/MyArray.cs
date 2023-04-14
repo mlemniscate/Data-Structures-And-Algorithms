@@ -2,7 +2,7 @@
 
 namespace Data_Structures_And_Algorithms.Arrays;
 
-public class MiladArray
+public class MyArray
 {
     // indexes in memory 
     // 100  104  108  112  116
@@ -21,7 +21,7 @@ public class MiladArray
     private int arrayLenght;
     private int insertIndex = 0;
 
-    public MiladArray(int arrayLength)
+    public MyArray(int arrayLength)
     {
         array = new int[arrayLength];
         this.arrayLenght = arrayLength;
@@ -102,7 +102,7 @@ public class MiladArray
         // numbers.RemoveAt(3);
         // Console.Write(numbers.IndexOf(40));
 
-        MiladArray numbers = new MiladArray(3);
+        MyArray numbers = new MyArray(3);
         numbers.Add(10);
         numbers.Add(20);
         numbers.Add(30);
