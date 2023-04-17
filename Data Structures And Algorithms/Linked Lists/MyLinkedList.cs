@@ -21,11 +21,9 @@ public class MyLinkedList
 
     public void AddFirst(int value)
     {
-        if (first == null)
-        {
-            first = new Node(value);
-            last ??= first;
-        }
+        if (IsEmpty())
+            first = last = new Node(value);
+        
         else
         {
             var oldFirst = first;
@@ -38,11 +36,8 @@ public class MyLinkedList
 
     public void AddLast(int value)
     {
-        if (last == null)
-        {
-            last = new Node(value);
-            first ??= last;
-        }
+        if (IsEmpty())
+            first = last = new Node(value);
         else
         {
             var oldLast = last;
@@ -51,32 +46,41 @@ public class MyLinkedList
         }
     }
 
-    public void DeleteFirst()
+    public void RemoveFirst()
     {
-        first = first.Next;
+        if (IsEmpty())
+            throw new InvalidOperationException();
+
+        if (first == last)
+        {
+            first = last = null;
+            return;
+        }
+
+        var second = first.Next;
+        first.Next = null;
+        first = second;
     }
 
-    public void DeleteLast()
+    public void RemoveLast()
     {
-        var node = first;
-        while (node.Next != last)
+        if (IsEmpty())
+            throw new InvalidOperationException();
+
+        if (first == last)
         {
-            node = node.Next;
+            first = last = null;
+            return;
         }
-        last = node;
+
+        var previous = GetPrevious(last);
+        last = previous;
         last.Next = null;
     }
 
     public bool Contains(int value)
     {
-        var node = first;
-         while (node != null)
-        {
-            if (node.Value.Equals(value))
-                return true;
-            node = node.Next;
-        }
-        return false;
+        return IndexOf(value) != -1;
     }
 
     public int IndexOf(int value)
@@ -104,6 +108,23 @@ public class MyLinkedList
         Console.WriteLine(node.Value);
     }
 
+    private bool IsEmpty()
+    {
+        return first == null;
+    }
+
+    private Node GetPrevious(Node node)
+    {
+        var current = first;
+        while (current != null)
+        {
+            if (current.Next == node) return current;
+            current = current.Next;
+        }
+
+        return null;
+    }
+
     public void Main()
     {
         // LinkedList<int> list = new LinkedList<int>();
@@ -129,7 +150,7 @@ public class MyLinkedList
         myLinkedList.AddFirst(10);
         myLinkedList.AddFirst(20);
         myLinkedList.AddFirst(30);
-        myLinkedList.DeleteLast();
+        myLinkedList.RemoveLast();
         Console.WriteLine(myLinkedList.Contains(30));
         Console.WriteLine(myLinkedList.Contains(-20));
         Console.WriteLine(myLinkedList.IndexOf(-10));
