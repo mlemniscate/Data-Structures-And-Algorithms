@@ -1,4 +1,6 @@
-﻿namespace Data_Structures_And_Algorithms.Linked_Lists;
+﻿using System.Drawing;
+
+namespace Data_Structures_And_Algorithms.Linked_Lists;
 
 public class MyLinkedList
 {
@@ -18,6 +20,7 @@ public class MyLinkedList
 
     private Node? first;
     private Node? last;
+    private int size;
 
     public void AddFirst(int value)
     {
@@ -32,6 +35,8 @@ public class MyLinkedList
                 Next = oldFirst
             };
         }
+
+        size++;
     }
 
     public void AddLast(int value)
@@ -44,6 +49,8 @@ public class MyLinkedList
             last = new Node(value);
             oldLast.Next = last;
         }
+
+        size++;
     }
 
     public void RemoveFirst()
@@ -52,14 +59,15 @@ public class MyLinkedList
             throw new InvalidOperationException();
 
         if (first == last)
-        {
             first = last = null;
-            return;
+        else
+        {
+            var second = first.Next;
+            first.Next = null;
+            first = second;
         }
 
-        var second = first.Next;
-        first.Next = null;
-        first = second;
+        size--;
     }
 
     public void RemoveLast()
@@ -68,14 +76,15 @@ public class MyLinkedList
             throw new InvalidOperationException();
 
         if (first == last)
-        {
             first = last = null;
-            return;
+        else
+        {
+            var previous = GetPrevious(last);
+            last = previous;
+            last.Next = null;
         }
 
-        var previous = GetPrevious(last);
-        last = previous;
-        last.Next = null;
+        size--;
     }
 
     public bool Contains(int value)
@@ -97,6 +106,11 @@ public class MyLinkedList
         return -1;
     }
 
+    public int Size()
+    {
+        return size;
+    }
+
     public void Print()
     {
         var node = first;
@@ -106,6 +120,19 @@ public class MyLinkedList
             node = node.Next;
         }
         Console.WriteLine(node.Value);
+    }
+
+    public int[] ToArray()
+    {
+        int[] array = new int[size];
+        var current = first;
+        var index = 0;
+        while (current != null)
+        {
+            array[index++] = current.Value;
+            current = current.Next;
+        }
+        return array;
     }
 
     private bool IsEmpty()
@@ -156,5 +183,6 @@ public class MyLinkedList
         Console.WriteLine(myLinkedList.IndexOf(-10));
         Console.WriteLine(myLinkedList.IndexOf(-20));
         myLinkedList.Print();
+        Console.WriteLine(myLinkedList.Size());
     }
 }
